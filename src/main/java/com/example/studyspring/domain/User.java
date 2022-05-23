@@ -19,7 +19,7 @@ public class User {
     @Column
     private String password;
 
-    @Column
+    @Column 
     private Integer age;
 
     @Builder
