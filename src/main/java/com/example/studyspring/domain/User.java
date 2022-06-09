@@ -23,8 +23,7 @@ public class User {
     private Integer age;
 
     @Builder
-    public User(String name, String password, Integer age){
-        this.name = name;
+    public User(String name, String password, Integer age){        this.name = name;
         this.password = password;
         this.age = age;
     }

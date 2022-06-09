@@ -25,7 +25,7 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void 게시글저장_불러오기(){
+    public void save_post(){
         String title = "test post";
         String content = "test content";
 
