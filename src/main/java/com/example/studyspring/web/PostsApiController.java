@@ -1,7 +1,9 @@
 package com.example.studyspring.web;
 
-import com.example.studyspring.web.dto.*;
 import com.example.studyspring.service.PostsService;
+import com.example.studyspring.web.dto.request.PostsSaveRequestDto;
+import com.example.studyspring.web.dto.request.PostsUpdateRequestDto;
+import com.example.studyspring.web.dto.response.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +14,8 @@ public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long save(@RequestBody PostsSaveRequestDto requestDto){
-        return postsService.save(requestDto);
+    public void save(@RequestBody PostsSaveRequestDto requestDto){
+        postsService.save(requestDto);
     }
 
     @PutMapping("/api/v1/posts/{id}")
