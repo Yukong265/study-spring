@@ -1,4 +1,4 @@
-package com.example.studyspring.domain;
+package com.example.studyspring.global.entity;
 
 
 import lombok.Getter;

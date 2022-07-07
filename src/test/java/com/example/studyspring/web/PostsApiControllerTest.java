@@ -1,9 +1,9 @@
 package com.example.studyspring.web;
 
-import com.example.studyspring.domain.posts.Posts;
-import com.example.studyspring.domain.posts.PostsRepository;
-import com.example.studyspring.web.dto.request.PostsSaveRequestDto;
-import com.example.studyspring.web.dto.request.PostsUpdateRequestDto;
+import com.example.studyspring.domain.posts.domain.Posts;
+import com.example.studyspring.domain.posts.domain.repository.PostsRepository;
+import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequestDto;
+import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

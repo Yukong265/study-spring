@@ -1,12 +1,13 @@
-package com.example.studyspring.service;
+package com.example.studyspring.domain.posts.domain.service;
 
 
-import com.example.studyspring.domain.posts.Posts;
-import com.example.studyspring.domain.posts.PostsRepository;
-import com.example.studyspring.web.dto.request.PostsSaveRequestDto;
-import com.example.studyspring.web.dto.request.PostsUpdateRequestDto;
-import com.example.studyspring.web.dto.response.PostsListResponseDto;
-import com.example.studyspring.web.dto.response.PostsResponseDto;
+import com.example.studyspring.domain.posts.domain.Posts;
+import com.example.studyspring.domain.posts.domain.exception.PostsNotFoundException;
+import com.example.studyspring.domain.posts.domain.repository.PostsRepository;
+import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequestDto;
+import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequestDto;
+import com.example.studyspring.domain.posts.domain.web.dto.response.PostsListResponseDto;
+import com.example.studyspring.domain.posts.domain.web.dto.response.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,12 +32,10 @@ public class PostsService {
     }
 
     @Transactional
-    public Long update(Long id, PostsUpdateRequestDto requestDto) {
-        Posts posts = postsRepository.findById(id).orElseThrow(() -> new
-                IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+    public void update(Long id, PostsUpdateRequestDto requestDto) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
         posts.update(requestDto.getTitle(), requestDto.getContent());
-
-        return id;
     }
 
     public PostsResponseDto findById(Long id) {
@@ -63,5 +62,13 @@ public class PostsService {
                 )).collect(Collectors.toList());
 
         return new PostsListResponseDto(postList);
+    }
+
+    @Transactional
+    public void deleteById(Long id){
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> PostsNotFoundException.EXCEPTION);
+
+        postsRepository.delete(posts);
     }
 }

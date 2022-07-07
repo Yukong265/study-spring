@@ -1,4 +1,4 @@
-package com.example.studyspring.web.dto.request;
+package com.example.studyspring.domain.posts.domain.web.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

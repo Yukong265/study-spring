@@ -1,6 +1,8 @@
 package com.example.studyspring.domain.posts;
 
 
+import com.example.studyspring.domain.posts.domain.Posts;
+import com.example.studyspring.domain.posts.domain.repository.PostsRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

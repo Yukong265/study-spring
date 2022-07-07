@@ -1,7 +1,10 @@
-package com.example.studyspring.domain.posts;
+package com.example.studyspring.domain.posts.domain;
 
-import com.example.studyspring.domain.BaseTimeEntity;
-import lombok.*;
+import com.example.studyspring.global.entity.BaseTimeEntity;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
