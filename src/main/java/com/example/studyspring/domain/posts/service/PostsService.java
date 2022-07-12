@@ -1,13 +1,13 @@
-package com.example.studyspring.domain.posts.domain.service;
+package com.example.studyspring.domain.posts.service;
 
 
 import com.example.studyspring.domain.posts.domain.Posts;
-import com.example.studyspring.domain.posts.domain.exception.PostsNotFoundException;
+import com.example.studyspring.domain.posts.exception.PostsNotFoundException;
 import com.example.studyspring.domain.posts.domain.repository.PostsRepository;
-import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequestDto;
-import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequestDto;
-import com.example.studyspring.domain.posts.domain.web.dto.response.PostsListResponseDto;
-import com.example.studyspring.domain.posts.domain.web.dto.response.PostsResponseDto;
+import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequest;
+import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequest;
+import com.example.studyspring.domain.posts.domain.web.dto.response.PostsListResponse;
+import com.example.studyspring.domain.posts.domain.web.dto.response.PostsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,7 @@ public class PostsService {
     private final PostsRepository postsRepository;
 
     @Transactional
-    public void save(PostsSaveRequestDto requestDto) {
+    public void save(PostsSaveRequest requestDto) {
         postsRepository.save(
                 Posts.builder()
                         .title(requestDto.getTitle())
@@ -32,18 +32,17 @@ public class PostsService {
     }
 
     @Transactional
-    public void update(Long id, PostsUpdateRequestDto requestDto) {
+    public void update(Long id, PostsUpdateRequest requestDto) {
         Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+                .orElseThrow(() -> PostsNotFoundException.EXCEPTION);
         posts.update(requestDto.getTitle(), requestDto.getContent());
     }
 
-    public PostsResponseDto findById(Long id) {
+    public PostsResponse findById(Long id) {
         Posts entity = postsRepository.findPostsById(id)
-                .orElseThrow(() -> new
-                        IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+                .orElseThrow(() -> PostsNotFoundException.EXCEPTION);
 
-        return PostsResponseDto.builder()
+        return PostsResponse.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .content(entity.getContent())
@@ -52,16 +51,16 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public PostsListResponseDto findAllDesc() {
-        List<PostsResponseDto> postList = postsRepository.findAll().stream()
-                .map(posts -> new PostsResponseDto(
+    public PostsListResponse findAllDesc() {
+        List<PostsResponse> postList = postsRepository.findAll().stream()
+                .map(posts -> new PostsResponse(
                         posts.getId(),
                         posts.getTitle(),
                         posts.getContent(),
                         posts.getAuthor()
                 )).collect(Collectors.toList());
 
-        return new PostsListResponseDto(postList);
+        return new PostsListResponse(postList);
     }
 
     @Transactional
