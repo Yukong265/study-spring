@@ -1,7 +1,7 @@
 package com.example.studyspring.domain.posts.domain.web;
 
-import com.example.studyspring.domain.posts.domain.service.PostsService;
-import com.example.studyspring.domain.posts.domain.web.dto.response.PostsListResponseDto;
+import com.example.studyspring.domain.posts.service.PostsService;
+import com.example.studyspring.domain.posts.domain.web.dto.response.PostsListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ public class IndexController {
     private final PostsService postsService;
 
     @GetMapping("/main")
-    public PostsListResponseDto findAllDesc(){
+    public PostsListResponse findAllDesc(){
         return postsService.findAllDesc();
     }
 

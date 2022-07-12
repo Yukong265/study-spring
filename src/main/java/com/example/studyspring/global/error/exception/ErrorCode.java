@@ -9,7 +9,12 @@ import lombok.Getter;
 @AllArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
-    POST_NOTFOUND(404, "POST-404-1", "Posts Not Found");
+    POST_NOTFOUND(404, "POST-404-1", "Posts Not Found"),
+
+
+    USER_NOTFOUND(404, "USER-404-1", "User Not Found"),
+
+    ALREADY_JOINED(409, "USER-409-1", "User Already Joined");
 
     private final int status;
     private final String code;

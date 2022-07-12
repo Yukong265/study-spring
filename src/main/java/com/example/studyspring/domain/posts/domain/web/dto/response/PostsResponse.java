@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public class PostsResponseDto {
+public class PostsResponse {
     private Long id;
     private String title;
     private String content;

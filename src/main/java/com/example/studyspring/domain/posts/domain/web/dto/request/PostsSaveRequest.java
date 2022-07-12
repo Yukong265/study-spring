@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public class PostsSaveRequestDto {
+public class PostsSaveRequest {
     private String title;
     private String content;
     private String author;
