@@ -18,12 +18,12 @@ public class UserSignUpService {
     private final PasswordEncoder passwordEncoder;
 
     public void signup(SignUpRequest request){
-        if(userRepository.findByAccounId(request.getAccountId()).isPresent())
+        if(userRepository.findByAccountId(request.getAccountId()).isPresent())
             throw AlreadyJoinedException.EXCEPTION;
 
         userRepository.save(
                 User.builder()
-                        .accounId(request.getAccountId())
+                        .accountId(request.getAccountId())
                         .password(passwordEncoder.encode(request.getPassword()))
                         .username(request.getUsername())
                         .authority(Authority.USER)

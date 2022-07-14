@@ -2,8 +2,8 @@ package com.example.studyspring.web;
 
 import com.example.studyspring.domain.posts.domain.Posts;
 import com.example.studyspring.domain.posts.domain.repository.PostsRepository;
-import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequestDto;
-import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequestDto;
+import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequest;
+import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequest;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,7 +44,7 @@ public class PostsApiControllerTest {
     public void Posts_upload() throws Exception {
         String title = "title";
         String content = "content";
-        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+        PostsSaveRequest requestDto = PostsSaveRequest.builder()
                 .title(title)
                 .content(content)
                 .author("author")
@@ -75,7 +75,7 @@ public class PostsApiControllerTest {
         String expectedTitle = "title2";
         String expectedContent = "content2";
 
-        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
+        PostsUpdateRequest requestDto = PostsUpdateRequest.builder()
                 .title(expectedTitle)
                 .content(expectedContent)
                 .build();
@@ -83,7 +83,7 @@ public class PostsApiControllerTest {
 
         String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
 
-        HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
+        HttpEntity<PostsUpdateRequest> requestEntity = new HttpEntity<>(requestDto);
 
         ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
 

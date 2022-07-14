@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Entity
@@ -19,13 +20,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 15, nullable = false)
-    private String accounId;
+    @NotNull
+    @Size(min = 8, max = 15)
+    @Column(unique = true)
+    private String accountId;
 
-    @Column(length = 60, nullable = false)
+    @Column
+    @NotNull
+    @Size(min =8, max = 60)
     private String password;
 
-    @Column(length = 8, nullable = false)
+    @NotNull
+    @Column(unique = true)
     private String username;
 
     @NotNull
@@ -33,9 +39,9 @@ public class User {
     private Authority authority;
 
     @Builder
-    public User(Long id, String accounId, String password, String username, Authority authority){
+    public User(Long id, String accountId, String password, String username, Authority authority){
         this.id = id;
-        this.accounId = accounId;
+        this.accountId = accountId;
         this.password = password;
         this.username = username;
         this.authority = authority;

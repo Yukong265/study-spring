@@ -2,7 +2,7 @@ package com.example.studyspring.domain.posts.service;
 
 
 import com.example.studyspring.domain.posts.domain.Posts;
-import com.example.studyspring.domain.posts.exception.PostsNotFoundException;
+import com.example.studyspring.domain.posts.domain.exception.PostsNotFoundException;
 import com.example.studyspring.domain.posts.domain.repository.PostsRepository;
 import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequest;
 import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequest;
