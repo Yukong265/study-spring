@@ -1,9 +1,9 @@
-package com.example.studyspring.domain.posts.domain.web;
+package com.example.studyspring.domain.posts.web;
 
 import com.example.studyspring.domain.posts.service.PostsService;
-import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequest;
-import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequest;
-import com.example.studyspring.domain.posts.domain.web.dto.response.PostsResponse;
+import com.example.studyspring.domain.posts.web.dto.request.PostsSaveRequest;
+import com.example.studyspring.domain.posts.web.dto.request.PostsUpdateRequest;
+import com.example.studyspring.domain.posts.web.dto.response.PostsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

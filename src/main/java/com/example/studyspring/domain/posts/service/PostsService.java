@@ -2,12 +2,12 @@ package com.example.studyspring.domain.posts.service;
 
 
 import com.example.studyspring.domain.posts.domain.Posts;
-import com.example.studyspring.domain.posts.domain.exception.PostsNotFoundException;
+import com.example.studyspring.domain.posts.exception.PostsNotFoundException;
 import com.example.studyspring.domain.posts.domain.repository.PostsRepository;
-import com.example.studyspring.domain.posts.domain.web.dto.request.PostsSaveRequest;
-import com.example.studyspring.domain.posts.domain.web.dto.request.PostsUpdateRequest;
-import com.example.studyspring.domain.posts.domain.web.dto.response.PostsListResponse;
-import com.example.studyspring.domain.posts.domain.web.dto.response.PostsResponse;
+import com.example.studyspring.domain.posts.web.dto.request.PostsSaveRequest;
+import com.example.studyspring.domain.posts.web.dto.request.PostsUpdateRequest;
+import com.example.studyspring.domain.posts.web.dto.response.PostsListResponse;
+import com.example.studyspring.domain.posts.web.dto.response.PostsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

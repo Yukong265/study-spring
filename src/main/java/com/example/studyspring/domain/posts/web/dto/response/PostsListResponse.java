@@ -1,4 +1,4 @@
-package com.example.studyspring.domain.posts.domain.web.dto.response;
+package com.example.studyspring.domain.posts.web.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

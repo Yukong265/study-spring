@@ -1,7 +1,7 @@
-package com.example.studyspring.domain.posts.domain.web;
+package com.example.studyspring.domain.posts.web;
 
 import com.example.studyspring.domain.posts.service.PostsService;
-import com.example.studyspring.domain.posts.domain.web.dto.response.PostsListResponse;
+import com.example.studyspring.domain.posts.web.dto.response.PostsListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

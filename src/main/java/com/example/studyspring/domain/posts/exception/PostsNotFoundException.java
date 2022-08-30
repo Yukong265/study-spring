@@ -1,4 +1,4 @@
-package com.example.studyspring.domain.posts.domain.exception;
+package com.example.studyspring.domain.posts.exception;
 
 import com.example.studyspring.global.error.exception.ErrorCode;
 import com.example.studyspring.global.error.exception.PostsException;
