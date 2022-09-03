@@ -21,6 +21,10 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'junit:junit:4.13.2'
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.7.3'
+
+
     compileOnly 'org.projectlombok:lombok'
     compileOnly 'org.springframework.boot:spring-boot-starter-mustache'
     annotationProcessor 'org.projectlombok:lombok'
