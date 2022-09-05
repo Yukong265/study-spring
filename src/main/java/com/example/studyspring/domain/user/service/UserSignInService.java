@@ -24,10 +24,17 @@ public class UserSignInService {
     public TokenResponse signIn(SignInRequest request){
         User user = userRepository.findByAccountId(request.getAccountId())
                 .orElseThrow(() -> NotJoinedException.EXCEPTION);
-        if(passwordEncoder.matches(request.getPassword(), user.getPassword())){
+        if(!passwordEncoder.matches(request.getPassword(), user.getPassword())){
             throw PasswordNotMatchException.EXCEPTION;
         }
 
         String access = jwtTokenProvider.generateAccessToken(request.getAccountId());
+        String refresh = jwtTokenProvider.generateRefreshToken(request.getAccountId());
+
+        return TokenResponse.builder()
+                .accessToken(access)
+                .refreshToken(refresh)
+                .authority(user.getAuthority())
+                .build();
     }
 }

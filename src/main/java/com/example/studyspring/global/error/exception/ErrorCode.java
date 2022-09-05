@@ -16,7 +16,9 @@ public enum ErrorCode {
     PASSWORD_NOT_MATCH(401, "AUTH-401-1", "Password Not Match"),
     USER_NOTFOUND(404, "USER-404-1", "User Not Found"),
 
-    ALREADY_JOINED(409, "USER-409-1", "User Already Joined");
+    ALREADY_JOINED(409, "USER-409-1", "User Already Joined"),
+
+    REFRESH_NOT_FOUND(404, "JWT-404-1", "RefreshToken Not Found");
 
     private final int status;
     private final String code;

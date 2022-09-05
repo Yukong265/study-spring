@@ -1,6 +1,7 @@
 package com.example.studyspring.global.security.jwt;
 
 
+import com.example.studyspring.domain.auth.domain.RefreshToken;
 import com.example.studyspring.global.exception.InvalidJwtException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -12,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import com.example.studyspring.global.security.auth.AuthDetailsService;
+import com.example.studyspring.domain.auth.domain.repository.RefreshRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -21,9 +23,23 @@ import java.util.Date;
 public class JwtTokenProvider {
     private final JwtProperties jwtProperties;
     private final AuthDetailsService authDetailsService;
+    private final RefreshRepository refreshRepository;
 
     public String generateAccessToken(String id){
         return generateToken(id, "access", jwtProperties.getAccessExp());
+    }
+
+    public String generateRefreshToken(String id) {
+        String refreshToken = generateToken(id, "refresh", jwtProperties.getRefreshExp());
+
+        refreshRepository.save(
+                RefreshToken.builder()
+                        .accountId(id)
+                        .token(refreshToken)
+                        .timeToLive(jwtProperties.getRefreshExp())
+                        .build()
+        );
+        return refreshToken;
     }
 
     public String parseToken(String bearerToken){
