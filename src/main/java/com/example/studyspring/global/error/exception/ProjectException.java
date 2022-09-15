@@ -5,6 +5,6 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class PostsException extends RuntimeException{
+public class ProjectException extends RuntimeException{
     private final ErrorCode errorCode;
 }

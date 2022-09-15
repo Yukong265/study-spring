@@ -5,6 +5,7 @@ import com.example.studyspring.domain.user.service.UserSignInService;
 import com.example.studyspring.domain.user.service.UserSignUpService;
 import com.example.studyspring.domain.user.web.dto.request.SignInRequest;
 import com.example.studyspring.domain.user.web.dto.request.SignUpRequest;
+import com.example.studyspring.domain.user.web.dto.response.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class UserApiController {
     }
 
     @PostMapping("/login")
-    public void signIn(@RequestBody @Valid SignInRequest request) {
-        userSignInService.signIn(request);
+    public TokenResponse signIn(@RequestBody @Valid SignInRequest request) {
+        return userSignInService.signIn(request);
     }
 }

@@ -2,7 +2,7 @@ package com.example.studyspring.domain.posts.service;
 
 
 import com.example.studyspring.domain.posts.domain.Posts;
-import com.example.studyspring.domain.posts.exception.PostsNotFoundException;
+import com.example.studyspring.domain.posts.exception.ProjectNotFoundException;
 import com.example.studyspring.domain.posts.domain.repository.PostsRepository;
 import com.example.studyspring.domain.posts.web.dto.request.PostsSaveRequest;
 import com.example.studyspring.domain.posts.web.dto.request.PostsUpdateRequest;
@@ -34,13 +34,13 @@ public class PostsService {
     @Transactional
     public void update(Long id, PostsUpdateRequest requestDto) {
         Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> PostsNotFoundException.EXCEPTION);
+                .orElseThrow(() -> ProjectNotFoundException.EXCEPTION);
         posts.update(requestDto.getTitle(), requestDto.getContent());
     }
 
     public PostsResponse findById(Long id) {
         Posts entity = postsRepository.findPostsById(id)
-                .orElseThrow(() -> PostsNotFoundException.EXCEPTION);
+                .orElseThrow(() -> ProjectNotFoundException.EXCEPTION);
 
         return PostsResponse.builder()
                 .id(entity.getId())
@@ -66,7 +66,7 @@ public class PostsService {
     @Transactional
     public void deleteById(Long id){
         Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> PostsNotFoundException.EXCEPTION);
+                .orElseThrow(() -> ProjectNotFoundException.EXCEPTION);
 
         postsRepository.delete(posts);
     }

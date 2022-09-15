@@ -1,9 +1,9 @@
 package com.example.studyspring.domain.auth.exception;
 
 import com.example.studyspring.global.error.exception.ErrorCode;
-import com.example.studyspring.global.error.exception.PostsException;
+import com.example.studyspring.global.error.exception.ProjectException;
 
-public class RefreshTokenNotFoundException extends PostsException {
+public class RefreshTokenNotFoundException extends ProjectException {
     public static final RefreshTokenNotFoundException EXCEPTION =
             new RefreshTokenNotFoundException();
 
