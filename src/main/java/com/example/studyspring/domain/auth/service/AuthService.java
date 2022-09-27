@@ -21,17 +21,16 @@ public class AuthService {
     private final UserFacade userFacade;
 
     @Transactional
-    public UserRefreshTokenResponse reissue(String refreshToken){
+    public UserRefreshTokenResponse reissue(String refreshToken) {
         User user = userFacade.getCurrentUser();
 
-        if(!jwtTokenProvider.getTokenBody(refreshToken).get("typ").equals("refresh"))
+        if (!jwtTokenProvider.getTokenBody(refreshToken).get("type").equals("refresh"))
             throw InvalidJwtException.EXCEPTION;
 
         RefreshToken refreshTokenOne = refreshRepository.findByToken(refreshToken)
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
 
         String newRefreshToken = jwtTokenProvider.generateRefreshToken(refreshTokenOne.getAccountId());
-
         refreshTokenOne.updateToken(newRefreshToken);
 
         String accessToken = jwtTokenProvider.generateAccessToken(refreshTokenOne.getAccountId());
@@ -42,6 +41,4 @@ public class AuthService {
                 .authority(user.getAuthority())
                 .build();
     }
-
-
 }

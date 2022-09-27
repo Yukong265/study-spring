@@ -18,12 +18,12 @@ spring:
     port: ${REDIS_PORT:6379}
 
 
-  jwt:
-    secret-key: ${JWT_SECRET}
-    access-exp: ${JWT_ACCESS_EXP}
-    refresh-exp: ${JWT_REFRESH_EXP}
-    header: ${JWT_HEADER}
-    prefix: ${JWT_PREFIX}
+jwt:
+  secret-key: ${JWT_SECRET}
+  access-exp: ${JWT_ACCESS_EXP}
+  refresh-exp: ${JWT_REFRESH_EXP}
+  header: ${JWT_HEADER}
+  prefix: ${JWT_PREFIX}
 
   logging:
     level:

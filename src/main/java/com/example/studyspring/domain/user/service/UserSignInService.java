@@ -23,6 +23,7 @@ public class UserSignInService {
     public TokenResponse signIn(SignInRequest request) {
         User user = userRepository.findByAccountId(request.getAccountId())
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw PasswordNotMatchException.EXCEPTION;
         }
