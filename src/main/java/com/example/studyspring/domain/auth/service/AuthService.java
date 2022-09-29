@@ -10,11 +10,13 @@ import com.example.studyspring.domain.user.facade.UserFacade;
 import com.example.studyspring.global.exception.InvalidJwtException;
 import com.example.studyspring.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class AuthService {
     private final RefreshRepository refreshRepository;
     private final JwtTokenProvider jwtTokenProvider;
@@ -26,6 +28,7 @@ public class AuthService {
 
         if (!jwtTokenProvider.getTokenBody(refreshToken).get("type").equals("refresh"))
             throw InvalidJwtException.EXCEPTION;
+
 
         RefreshToken refreshTokenOne = refreshRepository.findByToken(refreshToken)
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);

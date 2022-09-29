@@ -28,7 +28,9 @@ public class JwtTokenProvider {
     private final RefreshRepository refreshTokenRepository;
 
     public String generateAccessToken(String id) {
+
         return generateToken(id, "access", jwtProperties.getAccessExp());
+
     }
 
     public String generateRefreshToken(String id) {
@@ -45,11 +47,11 @@ public class JwtTokenProvider {
         return refreshToken;
     }
 
-    private String generateToken(String id, String type, Long exp) {
+    public String generateToken(String id, String type, Long exp) {
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .setSubject(id)
-                .claim("typ", type)
+                .claim("type", type)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
                 .compact();
