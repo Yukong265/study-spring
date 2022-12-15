@@ -1,34 +1,26 @@
 package com.example.studyspring.domain.chat.present.dto;
 
 
-import com.example.studyspring.domain.chat.domain.Message;
-import com.example.studyspring.domain.chat.service.MsgService;
-import lombok.Builder;
-import lombok.Getter;
-import org.springframework.web.socket.WebSocketSession;
+import lombok.*;
+import org.springframework.data.annotation.Id;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class MsgRoom {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
     private String roomId;
-    private Set<WebSocketSession> sessions = new HashSet<>();
-
-    @Builder
-    public MsgRoom(String roomId){
-        this.roomId = roomId;
-    }
-
-    public void handleActions(WebSocketSession session, Message message, MsgService msgService){
-        if (message.getMessageType().equals(Message.MessageType.ENTER)){
-            sessions.add(session);
-            message.setMessage(message.getSender() + "님이 입장했습니다.");
-        }
-        sendMessage(message, msgService);
-    }
-
-    public <T> void sendMessage(T message, MsgService messageService){
-        sessions.parallelStream().forEach(session -> messageService.sendMessage(session, message));
-    }
 }
